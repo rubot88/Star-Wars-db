@@ -10,9 +10,9 @@ const RandomPlanet = () => {
             <div className="description">
                 <h4>Hoth</h4>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Population <span>unknown</span></li>
-                    <li className="list-group-item">Rotation Period <span>23</span></li>
-                    <li className="list-group-item">Diameter <span>7200</span></li>
+                    <li className="list-group-item"><span className="term">Population:</span> <span>unknown</span></li>
+                    <li className="list-group-item"><span className="term">Rotation Period:</span> <span>23</span></li>
+                    <li className="list-group-item"><span className="term">Diameter:</span> <span>7200</span></li>
                 </ul>
             </div>
         </div>
