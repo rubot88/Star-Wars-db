@@ -7,7 +7,7 @@ const Loader = () => {
         height: '100 %'
     }
     return (
-        <div>
+        <div className="loader-wrapper">
             <div style={styleLoader} className="lds-double-ring">
                 <div></div>
                 <div></div>
