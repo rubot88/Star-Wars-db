@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
+import Loader from '../loader';
 import './random-planet.scss';
 
 export default class RandomPlanet extends Component {
@@ -23,6 +24,7 @@ export default class RandomPlanet extends Component {
     }
     render() {
         const { planet: { id, name, population, rotationPeriod, diameter } } = this.state;
+        return <Loader/>;
         return (
             <div className="random-planet jumbotron">
                 <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
