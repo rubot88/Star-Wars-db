@@ -17,7 +17,7 @@ export default class RandomPlanet extends Component {
     };
 
     updatePlanet() {
-        const id = 10;
+        const id = Math.floor(Math.random()*11+1);
         this.swapiservice
             .getPlanet(id)
             .then(({ name, population, rotation_period: rotationPeriod, diameter }) => {
