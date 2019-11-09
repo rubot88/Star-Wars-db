@@ -8,7 +8,7 @@ import './app.scss';
 export default class App extends Component {
     state = {
         randomPlanetIsvisible: true,
-        selectedPerson: null
+        selectedPerson: 1
     }
     toggleRandomPlanet = () => {
         this.setState((state) => ({ randomPlanetIsvisible: !state.randomPlanetIsvisible }))
