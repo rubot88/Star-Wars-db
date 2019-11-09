@@ -7,13 +7,19 @@ import './app.scss';
 
 export default class App extends Component {
     state = {
-        randomPlanetIsvisible: true
+        randomPlanetIsvisible: true,
+        selectedPerson: null
     }
     toggleRandomPlanet = () => {
         this.setState((state) => ({ randomPlanetIsvisible: !state.randomPlanetIsvisible }))
     }
+    onPersonSelected = (id) => {
+        this.setState({
+            selectedPerson: id
+        })
+    }
     render() {
-        const { randomPlanetIsvisible } = this.state;
+        const { randomPlanetIsvisible, selectedPerson } = this.state;
         const randomPlanetView = randomPlanetIsvisible ? <RandomPlanet /> : null;
         return (
             <div className="app" >
@@ -26,10 +32,12 @@ export default class App extends Component {
                  </button>
                 <div className="row mb2">
                     <div className="col-md-6">
-                        <ItemList />
+                        <ItemList
+                            onItemSelected={this.onPersonSelected} />
                     </div>
                     <div className="col-md-6">
-                        <PersonDetails />
+                        <PersonDetails
+                            personId={selectedPerson}/>
                     </div>
                 </div>
             </div>
