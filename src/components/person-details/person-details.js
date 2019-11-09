@@ -48,10 +48,7 @@ class PersonDetails extends Component {
 };
 
 const PersonView = (props) => {
-
     const { id, name, gender, birthYear, eyeColor } = props.person;
-    console.log('name', name);
-
     return (
         <Fragment>
 
