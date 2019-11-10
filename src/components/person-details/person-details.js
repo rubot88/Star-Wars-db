@@ -13,7 +13,7 @@ class PersonDetails extends Component {
         this.updatePerson();
     }
     componentDidUpdate(prevProps) {
-        if (this.props.personId !== prevProps.personId) {
+        if (this.props.personId !== prevProps.personId) {           
             this.setState({
                 loading: true
             })
