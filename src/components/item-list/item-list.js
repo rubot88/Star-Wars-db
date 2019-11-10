@@ -7,15 +7,16 @@ import './item-list.scss';
 export default class ItemList extends Component {
     swapiservice = new SwapiService();
     state = {
-        peopleList: null,
+        itemList: null,
         loading: true,
         error: false
     };
     componentDidMount() {
-        this.swapiservice.getAllPeople()
-            .then((peopleList) => {
+        const { getData } = this.props;
+        getData()
+            .then((itemList) => {
                 this.setState({
-                    peopleList,
+                    itemList,
                     loading: false,
                     error: false
                 })
@@ -43,10 +44,10 @@ export default class ItemList extends Component {
         })
     }
     render() {
-        const { peopleList, loading, error } = this.state;
+        const { itemList, loading, error } = this.state;
         const spinner = loading ? <Loader /> : null;
         const errorMassage = error ? <ErrorIndicator /> : null;
-        const items = peopleList ? this.renderItems(peopleList) : null;
+        const items = itemList ? this.renderItems(itemList) : null;
         return (
             <ul className="item-list list-group">
                 {spinner}
