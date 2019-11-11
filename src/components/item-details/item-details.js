@@ -2,32 +2,32 @@ import React, { Component, Fragment } from 'react';
 import SwapiService from '../../services/swapi-service.js';
 import ErrorButton from '../error-button';
 import Loader from '../loader/loader';
-import './person-details.scss';
+import './item-details.scss';
 
-class PersonDetails extends Component {
+class ItemDetails extends Component {
     swapiservice = new SwapiService();
     state = {
-        person: null,
+        item: null,
         loading: true
     };
     componentDidMount() {
-        this.updatePerson();
+        this.updateItem();
     }
     componentDidUpdate(prevProps) {
-        if (this.props.personId !== prevProps.personId) {           
+        if (this.props.itemId !== prevProps.itemId) {           
             this.setState({
                 loading: true
             })
-            this.updatePerson();
+            this.updateItem();
         }
     }
-    updatePerson() {
-        const { personId } = this.props;
-        if (!personId) return;
-        this.swapiservice.getPerson(personId)
-            .then((person) => {
+    updateItem() {
+        const { itemId } = this.props;
+        if (!itemId) return;
+        this.swapiservice.getItem(itemId)
+            .then((item) => {
                 this.setState({
-                    person,
+                    item,
                     loading: false
                 })
             });
@@ -35,25 +35,25 @@ class PersonDetails extends Component {
 
 
     render() {
-        if (!this.state.person) {
-            return <span>Select a person from a list</span>
+        if (!this.state.item) {
+            return <span>Select a item from a list</span>
         }
-        const { person, loading } = this.state;
-        const content = loading ? <Loader /> : <PersonView person={person} />;
+        const { item, loading } = this.state;
+        const content = loading ? <Loader /> : <ItemView item={item} />;
         return (
-            <div className="person-details card">
+            <div className="item-details card">
                 {content}
             </div>
         );
     }
 };
 
-const PersonView = (props) => {
-    const { id, name, gender, birthYear, eyeColor } = props.person;
+const ItemView = (props) => {
+    const { id, name, gender, birthYear, eyeColor } = props.item;
     return (
         <Fragment>
 
-            <img className="person-image"
+            <img className="item-image"
                 src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
                 alt={name} />
 
@@ -78,4 +78,4 @@ const PersonView = (props) => {
         </Fragment>
     );
 }
-export default PersonDetails;
+export default ItemDetails;

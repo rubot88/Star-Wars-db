@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import PersonDetails from '../item-details';
 import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service.js';
 import Row from '../row';
