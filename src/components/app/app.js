@@ -43,29 +43,6 @@ export default class App extends Component {
                  </button>
                 <ErrorButton />
                 <PeoplePage />
-                <div className="row mb2">
-                    <div className="col-md-6">
-                        <ItemList
-                            onItemSelected={this.onPersonSelected}
-                            getData={this.swapiService.gatAllPlanets}
-                            renderItem={({ name }) => (<span>{name}<button>!</button></span>)}
-                        />
-                    </div>
-                    <div className="col-md-6">
-                        <PersonDetails />
-                    </div>
-                </div>
-                <div className="row mb2">
-                    <div className="col-md-6">
-                        <ItemList
-                            onItemSelected={this.onPersonSelected}
-                            getData={this.swapiService.getAllStarships}
-                            renderItem={(item) => item.name} />
-                    </div>
-                    <div className="col-md-6">
-                        <PersonDetails />
-                    </div>
-                </div>
             </div>
         );
     }
