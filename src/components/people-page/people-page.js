@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ItemList from '../item-list';
-import PersonDetails from '../item-details';
-import ErrorIndicator from '../error-indicator';
+import ItemDetails from '../item-details';
+import ErrorBoundary from '../error-boundary';
 import SwapiService from '../../services/swapi-service.js';
 import Row from '../row';
-import ErrorBoundary from '../error-boundary';
 import './people-page.scss';
 
 export default class PeoplePage extends Component {
@@ -36,14 +35,14 @@ export default class PeoplePage extends Component {
 
             </ItemList>
         );
-        const personDetails = (
+        const Details = (
             <ErrorBoundary>
-                <PersonDetails
-                    personId={selectedPerson} />
+                <ItemDetails
+                    itemId={selectedPerson} />
             </ErrorBoundary>
         );
         return (
-                <Row left={itemList} right={personDetails} />
+                <Row left={itemList} right={Details} />
         );
     }
 }

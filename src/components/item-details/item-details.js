@@ -14,7 +14,7 @@ class ItemDetails extends Component {
         this.updateItem();
     }
     componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {           
+        if (this.props.itemId !== prevProps.itemId) {
             this.setState({
                 loading: true
             })
@@ -24,7 +24,7 @@ class ItemDetails extends Component {
     updateItem() {
         const { itemId } = this.props;
         if (!itemId) return;
-        this.swapiservice.getItem(itemId)
+        this.swapiservice.getPerson(itemId)
             .then((item) => {
                 this.setState({
                     item,
@@ -52,7 +52,6 @@ const ItemView = (props) => {
     const { id, name, gender, birthYear, eyeColor } = props.item;
     return (
         <Fragment>
-
             <img className="item-image"
                 src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
                 alt={name} />
@@ -73,7 +72,7 @@ const ItemView = (props) => {
                         <span>{eyeColor}</span>
                     </li>
                 </ul>
-                <ErrorButton/>
+                <ErrorButton />
             </div>
         </Fragment>
     );
