@@ -1,14 +1,27 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Children, cloneElement } from 'react';
 import SwapiService from '../../services/swapi-service.js';
 import ErrorButton from '../error-button';
 import Loader from '../loader/loader';
 import './item-details.scss';
 
+const Record = ({ item, field, label }) => {
+    return (
+        <li className="list-group-item">
+            <span className="term">{label}</span>
+            <span>{item[field]}</span>
+        </li>
+    );
+};
+
+export {
+    Record
+};
 class ItemDetails extends Component {
     swapiservice = new SwapiService();
     state = {
         item: null,
-        loading: true
+        loading: true,
+        image: null
     };
     componentDidMount() {
         this.updateItem();
@@ -22,13 +35,14 @@ class ItemDetails extends Component {
         }
     }
     updateItem() {
-        const { itemId } = this.props;
+        const { itemId, getData, getImageUrl } = this.props;
         if (!itemId) return;
-        this.swapiservice.getPerson(itemId)
+        getData(itemId)
             .then((item) => {
                 this.setState({
                     item,
-                    loading: false
+                    loading: false,
+                    image: getImageUrl(item)
                 })
             });
     };
@@ -38,8 +52,9 @@ class ItemDetails extends Component {
         if (!this.state.item) {
             return <span>Select a item from a list</span>
         }
-        const { item, loading } = this.state;
-        const content = loading ? <Loader /> : <ItemView item={item} />;
+        const { item, loading, image } = this.state;
+        const { children } = this.props;
+        const content = loading ? <Loader /> : <ItemView item={item} image={image} records={children} />;
         return (
             <div className="item-details card">
                 {content}
@@ -48,29 +63,23 @@ class ItemDetails extends Component {
     }
 };
 
-const ItemView = (props) => {
-    const { id, name, gender, birthYear, eyeColor } = props.item;
+const ItemView = ({ item, image, records }) => {
+    const { name } = item;
     return (
         <Fragment>
-            <img className="item-image"
-                src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+            <img
+                className="item-image"
+                src={image}
                 alt={name} />
 
             <div className="card-body">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                        <span className="term">Gender</span>
-                        <span>{gender}</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Birth Year</span>
-                        <span>{birthYear}</span>
-                    </li>
-                    <li className="list-group-item">
-                        <span className="term">Eye Color</span>
-                        <span>{eyeColor}</span>
-                    </li>
+                    {
+                        Children.map(records, (child) => {
+                            return cloneElement(child, { item });
+                        })
+                    }
                 </ul>
                 <ErrorButton />
             </div>
