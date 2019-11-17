@@ -42,52 +42,13 @@ export default class App extends Component {
         if (hasError) {
             return <ErrorIndicator />
         }
-        const personList =
-            <PersonList
-                onItemSelected={this.onItemSelected}>
-                {({ name }) => (
-                    `${name}`
-                )}
+        const personList = <PersonList onItemSelected={this.onItemSelected} />,
+            personDetails = <PersonDetails itemId={selectedItem} />
+        const planetList = <PlanetList onItemSelected={this.onItemSelected} />,
+            planetDetails = <PlanetDetails itemId={selectedItem} />
+        const starshipList = <StarshipList onItemSelected={this.onItemSelected} />,
+            starshipDetails = <StarshipDetails itemId={selectedItem} />
 
-            </PersonList>,
-            personDetails =
-                <PersonDetails
-                    itemId={selectedItem}>
-                    <Record field="gender" label="Gender" />
-                    <Record field="eyeColor" label="Eye Color" />
-                </PersonDetails>
-        const planetList =
-            <PlanetList
-                onItemSelected={this.onItemSelected}>
-                {({ name }) => (
-                    `${name}`
-                )}
-
-            </PlanetList>,
-            planetDetails =
-                <PlanetDetails
-                    itemId={selectedItem}>
-                    <Record field="climate" label="Climate" />
-                    <Record field="population" label="Population" />
-                    <Record field="rotationPeriod" label="Rotation period" />
-                    <Record field="diameter" label="Diameter" />
-                </PlanetDetails>
-        const starshipList =
-            <StarshipList
-                onItemSelected={this.onItemSelected}>
-                {({ name }) => (
-                    `${name}`
-                )}
-
-            </StarshipList>,
-            starshipDetails =
-                <StarshipDetails
-                    itemId={selectedItem}>
-                    <Record field="model" label="Model" />
-                    <Record field="manufacturer" label="Manufacturer" />
-                    <Record field="passengers" label="Passengers" />
-                    <Record field="costInCredits" label="Cost" />
-                </StarshipDetails>
         return (
             <ErrorBoundary>
                 <div className="app" >
