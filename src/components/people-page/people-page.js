@@ -17,7 +17,7 @@ export default class PeoplePage extends Component {
         const rand = min + Math.random() * (max + 1 - min);
         return Math.floor(rand);
     }
-    onPersonSelected = (selectedPerson) => {
+    onItemSelected = (selectedPerson) => {
         this.setState({
             selectedPerson
         })
@@ -26,7 +26,7 @@ export default class PeoplePage extends Component {
         const { selectedPerson } = this.state;
         const itemList = (
             <ItemList
-                onItemSelected={this.onPersonSelected}>
+                onItemSelected={this.onItemSelected}>
                 {({ name }) => (
                     `${name}`
                 )}

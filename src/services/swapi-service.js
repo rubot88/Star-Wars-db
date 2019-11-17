@@ -19,7 +19,7 @@ export default class SwapiService {
         return this._transformPerson(person);
     }
 
-    gatAllPlanets = async () => {
+    getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
         return res.results.map(this._transformPlanet);
     }

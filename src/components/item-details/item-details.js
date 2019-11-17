@@ -1,6 +1,5 @@
 import React, { Component, Fragment, Children, cloneElement } from 'react';
 import SwapiService from '../../services/swapi-service.js';
-import ErrorButton from '../error-button';
 import Loader from '../loader/loader';
 import './item-details.scss';
 
