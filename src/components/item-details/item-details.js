@@ -1,6 +1,4 @@
-import React, { Component, Fragment, Children, cloneElement } from 'react';
-import SwapiService from '../../services/swapi-service.js';
-import Loader from '../loader/loader';
+import React, { Children, cloneElement } from 'react';
 import './item-details.scss';
 
 const Record = ({ item, field, label }) => {
@@ -15,57 +13,11 @@ const Record = ({ item, field, label }) => {
 export {
     Record
 };
-class ItemDetails extends Component {
-    swapiservice = new SwapiService();
-    state = {
-        item: null,
-        loading: true,
-        image: null
-    };
-    componentDidMount() {
-        this.updateItem();
-    }
-    componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {
-            this.setState({
-                loading: true
-            })
-            this.updateItem();
-        }
-    }
-    updateItem() {
-        const { itemId, getData, getImageUrl } = this.props;
-        if (!itemId) return;
-        getData(itemId)
-            .then((item) => {
-                this.setState({
-                    item,
-                    loading: false,
-                    image: getImageUrl(item)
-                })
-            });
-    };
 
-
-    render() {
-        if (!this.state.item) {
-            return <span>Select a item from a list</span>
-        }
-        const { item, loading, image } = this.state;
-        const { children } = this.props;
-        const content = loading ? <Loader /> : <ItemView item={item} image={image} records={children} />;
-        return (
-            <div className="item-details card">
-                {content}
-            </div>
-        );
-    }
-};
-
-const ItemView = ({ item, image, records }) => {
+const ItemDetails = ({ item, image, records }) => {
     const { name } = item;
     return (
-        <Fragment>
+        <div className="item-details card">
             <img
                 className="item-image"
                 src={image}
@@ -82,7 +34,9 @@ const ItemView = ({ item, image, records }) => {
                 </ul>
                 {/* <ErrorButton /> */}
             </div>
-        </Fragment>
+        </div>
     );
 }
+
 export default ItemDetails;
+

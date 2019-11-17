@@ -1,15 +1,20 @@
-import ItemDetails, { Record } from '../item-details';
+import ItemDetails from '../item-details';
+import { withDataDetails } from '../hoc-helpers';
 import SwapiService from '../../services/swapi-service';
 
 const {
     getPerson,
     getPlanet,
-    getStarship } = new SwapiService();
-const PersonDetails = () => { };
+    getStarship,
+    getPersonImage,
+    getStarshipImage,
+    getPlanetImage } = new SwapiService();
 
-const PlanetDetails = () => { };
+const PersonDetails = withDataDetails(ItemDetails, getPerson, getPersonImage);
 
-const StarshipDetails = () => { };
+const PlanetDetails = withDataDetails(ItemDetails, getPlanet, getPlanetImage);
+
+const StarshipDetails = withDataDetails(ItemDetails, getStarship, getStarshipImage);
 
 export {
     PersonDetails,
