@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemList from '../item-list';
-import ItemDetails from '../item-details';
+import ItemDetails, { Record } from '../item-details/item-details';
 import ErrorBoundary from '../error-boundary';
 import SwapiService from '../../services/swapi-service.js';
 import Row from '../row';
@@ -35,14 +35,20 @@ export default class PeoplePage extends Component {
 
             </ItemList>
         );
+        const { getPerson, getPersonImage } = this.swapiService;
         const Details = (
             <ErrorBoundary>
                 <ItemDetails
-                    itemId={selectedPerson} />
+                    itemId={selectedPerson}
+                    getData={getPerson}
+                    getImageUrl={getPersonImage}>
+                    <Record field="gender" label="Gender" />
+                    <Record field="eyeColor" label="Eye Color" />
+                </ItemDetails>
             </ErrorBoundary>
         );
         return (
-                <Row left={itemList} right={Details} />
+            <Row left={itemList} right={Details} />
         );
     }
 }

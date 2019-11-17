@@ -81,7 +81,7 @@ const ItemView = ({ item, image, records }) => {
                         })
                     }
                 </ul>
-                <ErrorButton />
+                {/* <ErrorButton /> */}
             </div>
         </Fragment>
     );

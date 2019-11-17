@@ -33,43 +33,18 @@ export default class App extends Component {
         if (hasError) {
             return <ErrorIndicator />
         }
-
-        const { getPerson, getStarship, getPersonImage, getStarShipImage } = this.swapiService;
-        const personDetails = (
-            <ItemDetails
-                itemId={11}
-                getData={getPerson}
-                getImageUrl={getPersonImage}>
-                <Record field="gender" label="Gender" />
-                <Record field="eyeColor" label="Eye Color" />
-            </ItemDetails>
-        );
-        const starshipDetails = (
-            <ItemDetails
-                itemId={5}
-                getData={getStarship}
-                getImageUrl={getStarShipImage}>
-                <Record field="model" label="Model" />
-                <Record field="length" label="Length" />
-                <Record field="costInCredits" label="Cost" />
-            </ItemDetails>
-        );
         return (
             <ErrorBoundary>
                 <div className="app" >
                     <Header />
-                    {/* {randomPlanetView}
-                <button type="button"
-                    className="toggle-random-planet btn btn-warning"
-                    onClick={this.toggleRandomPlanet}>
-                    Toggle Random Planet
+                    {randomPlanetView}
+                    {/* <button type="button"
+                        className="toggle-random-planet btn btn-warning"
+                        onClick={this.toggleRandomPlanet}>
+                        Toggle Random Planet
                  </button>
-                <ErrorButton />
-                <PeoplePage /> */}
-                    <Row
-                        left={personDetails}
-                        right={starshipDetails}
-                    />
+                    <ErrorButton /> */}
+                    <PeoplePage />
                 </div>
             </ErrorBoundary>
         );
