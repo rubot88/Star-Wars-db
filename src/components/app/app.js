@@ -5,7 +5,6 @@ import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service.js';
 import ErrorBoundary from '../error-boundary';
 import Row from '../row';
-import { Record } from '../item-details/item-details';
 import {
     PersonDetails,
     PlanetDetails,
