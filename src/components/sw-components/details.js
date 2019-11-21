@@ -1,15 +1,7 @@
 import React, { Fragment } from 'react';
 import ItemDetails, { Record } from '../item-details/item-details';
 import { withDataDetails } from '../hoc-helpers';
-import SwapiService from '../../services/swapi-service';
-
-const {
-    getPerson,
-    getPlanet,
-    getStarship,
-    getPersonImage,
-    getStarshipImage,
-    getPlanetImage } = new SwapiService();
+import { SwapiServiceConsumer } from '../swapi-service-context';
 
 const withChildRecords = (Wrapped, children) => {
     return (props) => {
@@ -45,19 +37,61 @@ const starshipRecords = (
         <Record field="costInCredits" label="Cost" />
     </Fragment>
 );
+const PersonDetails = (props) => {
+    return (
+        <SwapiServiceConsumer>
+            {
+                ({ getPerson, getPersonImage }) => {
+                    const Content = withDataDetails(
+                        withChildRecords(ItemDetails, personRecords),
+                        getPerson, getPersonImage);
+                    return (
+                        <Content {...props} />
+                    );
+
+                }
+            }
+        </SwapiServiceConsumer>
+    );
+};
 
 
-const PersonDetails = withDataDetails(
-    withChildRecords(ItemDetails, personRecords),
-    getPerson, getPersonImage);
+const PlanetDetails = (props) => {
+    return (
+        <SwapiServiceConsumer>
+            {
+                ({ getPlanet, getPlanetImage }) => {
+                    const Content = withDataDetails(
+                        withChildRecords(ItemDetails, planetRecords),
+                        getPlanet, getPlanetImage);
+                    return (
+                        <Content {...props} />
+                    );
+                }
+            }
+        </SwapiServiceConsumer>
+    );
+};
 
-const PlanetDetails = withDataDetails(
-    withChildRecords(ItemDetails, planetRecords),
-    getPlanet, getPlanetImage);
 
-const StarshipDetails = withDataDetails(
-    withChildRecords(ItemDetails, starshipRecords),
-    getStarship, getStarshipImage);
+const StarshipDetails = (props) => {
+    return (
+        <SwapiServiceConsumer>
+            {
+                ({ getStarship, getStarshipImage }) => {
+                    const Content = withDataDetails(
+                        withChildRecords(ItemDetails, starshipRecords),
+                        getStarship, getStarshipImage);
+                    return (
+                        <Content {...props} />
+                    );
+
+                }
+            }
+        </SwapiServiceConsumer>
+    );
+};
+
 
 export {
     PersonDetails,

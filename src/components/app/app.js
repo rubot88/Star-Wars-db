@@ -5,6 +5,7 @@ import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service.js';
 import ErrorBoundary from '../error-boundary';
 import Row from '../row';
+import { SwapiServiceProvider } from '../swapi-service-context';
 import {
     PersonDetails,
     PlanetDetails,
@@ -50,13 +51,15 @@ export default class App extends Component {
 
         return (
             <ErrorBoundary>
-                <div className="app" >
-                    <Header />
-                    <RandomPlanet />
-                    <Row left={personList} right={personDetails} />
-                    <Row left={planetList} right={planetDetails} />
-                    <Row left={starshipList} right={starshipDetails} />
-                </div>
+                <SwapiServiceProvider value={this.swapiService}>
+                    <div className="app" >
+                        <Header />
+                        <RandomPlanet />
+                        <Row left={personList} right={personDetails} />
+                        <Row left={planetList} right={planetDetails} />
+                        <Row left={starshipList} right={starshipDetails} />
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundary>
         );
     }

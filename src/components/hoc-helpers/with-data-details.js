@@ -12,6 +12,7 @@ const withDataDetails = (Item, getData, getImageUrl) => {
             this.updateItem();
         }
         componentDidUpdate(prevProps) {
+
             if (this.props.itemId !== prevProps.itemId) {
                 this.setState({
                     loading: true
