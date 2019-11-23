@@ -3,6 +3,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service.js';
+import DummySwapiService from '../../services/dummy-swapi-service';
 import ErrorBoundary from '../error-boundary';
 import Row from '../row';
 import { SwapiServiceProvider } from '../swapi-service-context';
@@ -17,11 +18,24 @@ import {
 import './app.scss';
 
 export default class App extends Component {
-    swapiService = new SwapiService();
     state = {
         selectedItem: 2,
-        hasError: false
+        hasError: false,
+        swapiService: new SwapiService()
     }
+    onServiceChange = () => {
+        this.setState(({ swapiService }) => {
+            const Service = swapiService instanceof SwapiService ?
+                DummySwapiService : SwapiService;
+
+            return {
+                swapiService: new Service()
+            };
+
+        })
+
+    }
+
     toggleRandomPlanet = () => {
         this.setState((state) => ({ randomPlanetIsvisible: !state.randomPlanetIsvisible }))
     }
@@ -51,9 +65,9 @@ export default class App extends Component {
 
         return (
             <ErrorBoundary>
-                <SwapiServiceProvider value={this.swapiService}>
+                <SwapiServiceProvider value={this.state.swapiService}>
                     <div className="app" >
-                        <Header />
+                        <Header onServiceChange={this.onServiceChange} />
                         <RandomPlanet />
                         <Row left={personList} right={personDetails} />
                         <Row left={planetList} right={planetDetails} />

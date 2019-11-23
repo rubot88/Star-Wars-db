@@ -26,7 +26,10 @@ class ItemDetails extends Component {
         this.updateItem();
     }
     componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {
+        const { itemId, getData, getImageUrl } = this.props;
+        if (itemId !== prevProps.itemId ||
+            getData !== prevProps.getData ||
+            getImageUrl !== prevProps.getImageUrl) {
             this.setState({
                 loading: true
             })
