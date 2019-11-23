@@ -16,12 +16,15 @@ const withDataList = (View) => {
             });
         };
         update() {
+            this.setState({
+                loading: true,
+                error: false
+            });
             this.props.getData()
                 .then((data) => {
                     this.setState({
                         data,
                         loading: false,
-                        error: false
                     });
                 })
                 .catch(this.onError);
@@ -31,7 +34,7 @@ const withDataList = (View) => {
         }
 
         componentDidUpdate(prevProps) {
-            if(this.props.getData!==prevProps.getData)this.update();
+            if (this.props.getData !== prevProps.getData) this.update();
         }
 
 
