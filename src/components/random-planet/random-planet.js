@@ -8,6 +8,17 @@ export default class RandomPlanet extends Component {
     static defaultProps = {
         updateInterval: 5000
     };
+
+    static propTypes = {
+        updateInterval: (props, propName, componentName)=>{
+            const value = props[propName];
+            if(typeof value ==='number' &&!isNaN(value)){
+                return null;
+            }
+            return new TypeError(`${componentName}: ${propName} must be a number`);
+        }
+    };
+
     swapiservice = new SwapiService();
     state = {
         planet: {},
