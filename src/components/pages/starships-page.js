@@ -7,7 +7,7 @@ import {
 
 export default class PeoplePage extends Component {
     state = {
-        selectedItem: 15
+        selectedItem: null
     }
     onItemSelected = (selectedItem) => {
         this.setState({
