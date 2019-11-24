@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './row.scss';
 
 const Row = ({ left, right }) => {
@@ -14,4 +15,8 @@ const Row = ({ left, right }) => {
     );
 };
 
+Row.propTypes = {
+    left: PropTypes.node,
+    right: PropTypes.node
+}
 export default Row;

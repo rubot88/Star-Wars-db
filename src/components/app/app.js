@@ -38,7 +38,7 @@ export default class App extends Component {
 
     }
     render() {
-        const { hasError} = this.state;
+        const { hasError } = this.state;
         if (hasError) {
             return <ErrorIndicator />
         }
@@ -49,8 +49,8 @@ export default class App extends Component {
                         <Header onServiceChange={this.onServiceChange} />
                         <RandomPlanet />
                         <PeoplePage />
-                        <PlanetPage/>
-                        <StarshipPage/>
+                        <PlanetPage />
+                        <StarshipPage />
                     </div>
                 </SwapiServiceProvider>
             </ErrorBoundary>
