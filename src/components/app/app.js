@@ -12,6 +12,7 @@ import {
     PlanetPage,
     StarshipPage
 } from '../pages';
+import { StarshipDetails } from '../sw-components';
 import './app.scss';
 
 export default class App extends Component {
@@ -51,11 +52,16 @@ export default class App extends Component {
                             <Header onServiceChange={this.onServiceChange} />
                             <RandomPlanet />
                             <Route path="/"
-                                     render={()=><h2>Welcome to StarDB</h2>}
-                                    exact/>
+                                render={() => <h2>Welcome to StarDB</h2>}
+                                exact />
                             <Route path="/people" component={PeoplePage} />
                             <Route path="/planets" component={PlanetPage} />
-                            <Route path="/starships" component={StarshipPage} />
+                            <Route path="/starships" exact component={StarshipPage} />
+                            <Route path="/starships/:id"
+                                render={({ match }) => {
+                                    const { id } = match.params;
+                                    return <StarshipDetails itemId={id} />
+                                }} />
                         </div>
                     </Router>
                 </SwapiServiceProvider>
