@@ -12,15 +12,19 @@
         display: inline-block;
         vertical-align: top;
         transition: 0.2s;
-
     }
     ul {
         list-style-type: none;
+        margin: .5rem;
     }
     li {
         margin-right: 10px;
+        &:hover {
+            background: #292828;
+            border-radius: 5%;
+        }
         a {
-            padding: 1.45rem 1rem 0.7rem;
+            padding: 1rem;
             font-size: 1.25rem;
             color: #00a66b;
             &:hover {
