@@ -4,7 +4,6 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service.js';
-import DummySwapiService from '../../services/dummy-swapi-service';
 import ErrorBoundary from '../error-boundary';
 import { SwapiServiceProvider } from '../swapi-service-context';
 import {
