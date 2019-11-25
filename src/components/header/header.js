@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './heder.scss'
 
-const Header = ({ onServiceChange }) => {
+const Header = () => {
 
     return (
         <nav className="header nav align-items-center">
@@ -32,11 +32,6 @@ const Header = ({ onServiceChange }) => {
 
                 </li>
             </ul>
-            <button
-                onClick={onServiceChange}
-                className="btn btn-success btn-sm">
-                Change Service
-            </button>
         </nav>
     )
 }
